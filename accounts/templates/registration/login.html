@@ -1,0 +1,51 @@
+{% extends 'templates/base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<body class="bg-gradient-primary">
+  <div class="container">
+      <div class="row justify-content-flex-start">
+          <div class="col-xl-4 col-lg-6 col-md-6">
+              <div class="card o-hidden border-0 shadow-lg my-5" style="height:35rem">
+                  <div class="card-body p-0">
+                      <div class="row justify-content-center">
+                          <div class="p-5">
+                                <div class="text-center">
+                                  <h1 class="h4 text-gray-900 mb-3 ">Welcome!</h1>
+                              </div>
+                                <div class="row justify-content-center">
+                                    <img style="height:75%; width:75%" src="{% static 'img/rocket.png' %}">
+                                    <a href='https://br.freepik.com/vetores/fundo'>
+                                        <div class="text-cente mt-1r">
+                                            <p class="text-gray-900" style="font-size:12px">Vetor criado por rawpixel.com - br.freepik.com</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <form class="user mb-3 mt-2" method="POST">
+                                {% csrf_token %}
+                                    <div align="center">
+                                        {{ form.errors }}
+                                        <div class="mb-1">{{ form.username }}</div>
+                                        <div> {{ form.password }}</div>
+                                        <button class="btn btn-primary" type="submit" style="margin-top:1rem; width:13rem">Login</button>
+                                    </div>
+                                </form>
+                                <hr>
+<!--                                <div class="text-center">-->
+<!--                                    <a class="small" href="forgot-password.html">Forgot Password?</a>-->
+<!--                                </div>-->
+                                <div class="text-center">
+                                    <a class="small" href="{% url 'signup' %}">Create an Account!</a>
+                                </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+
+{% endblock %}
