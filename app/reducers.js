@@ -1,7 +1,6 @@
 
 // commons
 import Home from './components/Home/reducers';
-import Auth from './components/Auth/reducers';
 
 // Screens
 
@@ -9,7 +8,6 @@ import Auth from './components/Auth/reducers';
 
 const RootReducers = {
     Home,
-    Auth
 };
 
 export default RootReducers;

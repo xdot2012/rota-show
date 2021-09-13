@@ -4,19 +4,33 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useDispatch, connect } from 'react-redux';
 import { LoadPages } from './actions';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { AuthContext } from '../../App';
 
-function Home({navigation, pages}) {
+function Home({navigation}) {
     const dispatch = useDispatch()
-    const [pagesLoaded, setPagesLoaded] = useState(false);
 
-    useEffect(() => {
-        dispatch(LoadPages());
-    }, [])
+    const userSettings = () => {
+        navigation.navigate('Settings')
+    }
 
+    const addLocal = () => {
+        navigation.navigate('AddLocal')
+    }
 
+    const generateRoute = () => {
+        navigation.navigate('GenerateRoute')
+    }
+
+    const signOut = () => {
+        navigation.navigate('SignOut');
+    }
+    
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Text>HOME PAGE</Text>
+            <Button title="Configurações" onPress={() => userSettings()} />
+            <Button title="Adicionar Local" onPress={() => addLocal()} />
+            <Button title="Gerar Rota" onPress={() => generateRoute()} />
+            <Button title="Logout" onPress={() => signOut()} />
         </View>
     )
 }

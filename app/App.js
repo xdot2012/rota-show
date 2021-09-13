@@ -12,18 +12,46 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { enableScreens } from 'react-native-screens'; 
 
 import MainScreen from './screens/MainScreen';
+import CreateAccountScreen from './screens/CreateAccountScreen';
+import AddLocalScreen from './screens/AddLocalScreen';
+import SettingsScreen from './screens/SettingsScreen';
+import GenerateRouteScreen from './screens/GenerateRouteScreen';
+import ShowRouteScreen from './screens/ShowRouteScreen';
 
 enableScreens();
 const Stack = createNativeStackNavigator();
 const AuthContext = React.createContext();
 
 
-function SignInScreen() {
+function SignOutScreen({navigation}) {
+  const { signOut } = React.useContext(AuthContext);
+
+  useEffect(() => {
+    signOut();
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'SignIn' }],
+    });
+    navigation.navigate('SignIn');
+  } ,[])
+
+  return (
+    <View>
+      <Text>Loggin Out...</Text>
+    </View>
+  )
+}
+
+function SignInScreen({navigation}) {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
 
   const { signIn } = React.useContext(AuthContext);
 
+  const login = (username, password) => {
+    signIn({ username, password });
+    navigation.navigate('Home');
+  }
   return (
     <View>
       <TextInput
@@ -37,7 +65,8 @@ function SignInScreen() {
         onChangeText={setPassword}
         secureTextEntry
       />
-      <Button title="Sign in" onPress={() => signIn({ username, password })} />
+      <Button title="Sign in" onPress={() => login(username, password)} />
+      <Button title="Create Account" onPress={() => navigation.navigate("CreateAccount")} />
     </View>
   );
 }
@@ -130,12 +159,15 @@ function App({ navigation }) {
     <Provider store={store}>
       <AuthContext.Provider value={authContext} >
         <NavigationContainer>
-        <Stack.Navigator>
-          {state.userToken == null ? (
+        <Stack.Navigator initialRouteName={state.userToken == null ? 'SignIn' : 'Home'}>
             <Stack.Screen name="SignIn" component={SignInScreen} />
-          ) : (
-            <Stack.Screen name="Home" component={MainScreen} />
-          )}
+            <Stack.Screen name="Home" component={MainScreen}/>
+            <Stack.Screen name="CreateAccount" component={CreateAccountScreen} />
+            <Stack.Screen name="AddLocal" component={AddLocalScreen} />
+            <Stack.Screen name="Settings" component={SettingsScreen} />
+            <Stack.Screen name="GenerateRoute" component={GenerateRouteScreen} />
+            <Stack.Screen name="ShowRouteScreen" component={ShowRouteScreen} />
+            <Stack.Screen name="SignOut" component={SignOutScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </AuthContext.Provider>
