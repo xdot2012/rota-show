@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Text, View, Button, StyleSheet } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useDispatch, connect } from 'react-redux';
 import { LoadPages } from './actions';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { AuthContext } from '../../App';
+import { ReactReduxContext } from 'react-redux'
+import * as SecureStore from 'expo-secure-store';
 
 function Home({navigation}) {
-    const dispatch = useDispatch()
 
     const userSettings = () => {
         navigation.navigate('Settings')

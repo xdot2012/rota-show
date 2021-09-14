@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, Button, TouchableOpacity, TextInput } from 'react-native'
+import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native'
 
 function GenerateRouteScreen({navigation}) {
   const [idPontoInicial, setIdPontoInicial] = useState('');
@@ -11,8 +11,8 @@ function GenerateRouteScreen({navigation}) {
 
     return (
       <View>
-        <Text>TELA COM INPUT DO PONTO INICIAL DA ROTA</Text>
-        <Button title="GERAR ROTA" onPress={() => gerarRota({idPontoInicial})} />
+        <Text>DROPDOWN COM OS PONTOS PRO CARA SELECIONAR O INICIAL</Text>
+      <Button title="GERAR ROTA" onPress={() => gerarRota({idPontoInicial})} />
 
       </View>
     );

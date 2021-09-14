@@ -3,7 +3,6 @@ import { Text, View } from 'react-native'
 import Home from '../components/Home';
 
 function MainScreen({navigation}) {
-
     return (
         <Home navigation={navigation}/>
     );
