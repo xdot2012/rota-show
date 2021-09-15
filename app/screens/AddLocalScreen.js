@@ -30,7 +30,14 @@ function AddLocalScreen({navigation}) {
     ] )
   }
     return (
-      <View>
+      <View  style={{ flex: 1, alignItems: 'center', marginTop: 50, }}>
+
+        <View>
+          <TouchableOpacity style={{backgroundColor: 'white', width: 300, borderRadius: 18, marginBottom: 20}} >
+            <Text style={{color: '#4e8df2', padding: 20, textAlign: 'center', fontWeight: '400', fontSize: 22}}>Adicionar Destino</Text>
+          </TouchableOpacity>
+        </View>
+
         <TextInput
           placeholder="Nome do Local"
           value={localName}
