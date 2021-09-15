@@ -11,4 +11,9 @@ class User(AbstractUser):
     def __str__(self):
         return self.email
 
+    def save(self, *args, **kwargs):
+        self.username = self.username.upper()
+        self.email = self.email.upper()
+        
+        super(User, self).save(*args, **kwargs)
 
