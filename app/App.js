@@ -6,31 +6,21 @@ import { Provider } from 'react-redux';
 
 import configureStore from './store';
 const { persistor, store } = configureStore();
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { enableScreens } from 'react-native-screens'; 
+import Navigator from './routes/Navigator';
+import { NavigationContainer } from '@react-navigation/native';
 
-import MainScreen from './screens/MainScreen';
-import SignInScreen from './screens/SignInScreen';
-import SignOutScreen from './screens/SignOutScreen';
-
-import CreateAccountScreen from './screens/CreateAccountScreen';
-import AddLocalScreen from './screens/AddLocalScreen';
-import SettingsScreen from './screens/SettingsScreen';
-import GenerateRouteScreen from './screens/GenerateRouteScreen';
-import ShowRouteScreen from './screens/ShowRouteScreen';
-import axios from 'axios';
-import { BASE_URL } from './variables';
+import { AuthProvider } from './context/auth';
 
 enableScreens();
-const Stack = createNativeStackNavigator();
+export const Stack = createNativeStackNavigator();
 
 
 function App() {
-
   const [fonstLoaded, setFontsLoaded] = useState(false);
-  
+
   _loadAssets = () => {
     Font.loadAsync({
       'lato-bold-extra': require('./assets/fonts/Lato-Black.ttf'),
@@ -43,25 +33,15 @@ function App() {
   useEffect(() => {
     _loadAssets()
   } ,[])
-  
+
   return (
-    <Provider store={store}>
-        <NavigationContainer>
-        <Stack.Navigator initialRouteName={'SignIn'}>
-            <Stack.Screen name="SignIn" component={SignInScreen} />
-            <Stack.Screen name="Home" component={MainScreen}/>
-            <Stack.Screen name="CreateAccount" component={CreateAccountScreen} />
-            <Stack.Screen name="AddLocal" component={AddLocalScreen} />
-            <Stack.Screen name="Settings" component={SettingsScreen} />
-            <Stack.Screen name="GenerateRoute" component={GenerateRouteScreen} />
-            <Stack.Screen name="ShowRouteScreen" component={ShowRouteScreen} />
-            <Stack.Screen name="SignOut" component={SignOutScreen} />
-        </Stack.Navigator>
+    <AuthProvider>
+      <NavigationContainer>
+        <Navigator />
       </NavigationContainer>
-    </Provider>
+    </AuthProvider>
   );
 }
-
 
 
 const styles = StyleSheet.create({

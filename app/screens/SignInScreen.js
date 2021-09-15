@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity, TextInput, Alert } from 'react-native'
+import AuthContext from '../context/auth';
 
 function SignInScreen({navigation}) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
   
+    const context = useContext(AuthContext);
+
     const login = (username, password) => {
-      navigation.navigate('Home');
+      context.Login(username, password);
     }
-    
+
     return (
       <View>
         <TextInput

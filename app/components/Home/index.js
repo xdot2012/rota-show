@@ -1,13 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Text, View, Button, StyleSheet } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useDispatch, connect } from 'react-redux';
-import { LoadPages } from './actions';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import { ReactReduxContext } from 'react-redux'
-import * as SecureStore from 'expo-secure-store';
+import AuthContext from '../../context/auth';
 
 function Home({navigation}) {
+    const context = useContext(AuthContext);
 
     const userSettings = () => {
         navigation.navigate('Settings')
@@ -22,8 +18,9 @@ function Home({navigation}) {
     }
 
     const signOut = () => {
-        navigation.navigate('SignOut');
+        context.Logout();
     }
+
     
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -48,10 +45,4 @@ const styles = StyleSheet.create({
     },
   })
 
-const mapStateToProps = state => (
-    {
-        pages: state.Home.pages,
-    }
-)
-
-export default connect(mapStateToProps)(Home);
+export default Home;
