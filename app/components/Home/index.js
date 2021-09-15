@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Text, View, Button, StyleSheet } from 'react-native'
 import AuthContext from '../../context/auth';
-import { Text, View, Button, StyleSheet, ImageBackground } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useDispatch, connect } from 'react-redux';
 import { LoadPages } from './actions';
