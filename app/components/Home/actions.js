@@ -9,16 +9,3 @@ export const loadPagesSuccess = (payload) => {
         payload: payload.data
     };
 };
-
-export const LoadPages = () => {
-    return (dispatch) => {
-        const url = `${BASE_URL}/lista`;
-        axios.get(url, {timeout: 36000})
-            .then((response => {
-                dispatch(loadPagesSuccess(response));
-            }))
-            .catch((error => {
-                console.log(error)
-            }));
-    };
-};

@@ -3,7 +3,6 @@ import { Text, View, Button, StyleSheet } from 'react-native'
 import AuthContext from '../../context/auth';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useDispatch, connect } from 'react-redux';
-import { LoadPages } from './actions';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { ReactReduxContext } from 'react-redux'
 import * as SecureStore from 'expo-secure-store';
