@@ -24,7 +24,8 @@ class AuthToken(ObtainAuthToken):
         return Response({
             'token': token.key,
             'user_id': user.pk,
-            'email': user.email
+            'email': user.email,
+            'username': user.username
         })
 
 
@@ -34,8 +35,6 @@ class IsPostOrIsAuthenticated(permissions.BasePermission):
         if request.method == 'POST':
             return True
 
-        # Otherwise, only allow authenticated requests
-        # Post Django 1.10, 'is_authenticated' is a read-only attribute
         return bool(request.user and request.user.is_authenticated)
 
 

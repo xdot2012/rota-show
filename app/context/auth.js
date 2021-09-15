@@ -10,13 +10,13 @@ const AuthContext = createContext({});
 export const AuthProvider = (props) => {
     const [signedIn, setSignedIn] = useState(false);
     const [token, setToken] = useState(null);
-    const [userID, setUserID] = useState(null);
+    const [user, setUser] = useState({});
 
-    const AuthPost = async (data) => {
-        await axios.post(`${BASE_URL}${data.url}`, data.body, {headers: {Authorization: `Token ${token}`}, timeout: 36000})
+    const get = async (data) => {
+        console.log(`Token ${token}`)
+        await axios.get(`${BASE_URL}${data.url}`, {headers: {Authorization: `Token ${token}`}, timeout: 36000})
         .then((response) => {
-            console.log(response.data);
-            return response;
+            return response.data;
         })
         .catch((error) => {
             console.log(error);
@@ -24,27 +24,50 @@ export const AuthProvider = (props) => {
         })
     }
 
-    const GetToken = () => {
-        return `Token ${token}`
+    const post = async (data) => {
+        await axios.post(`${BASE_URL}${data.url}`, data.body, {headers: {Authorization: `Token ${token}`}, timeout: 36000})
+        .then((response) => {
+            console.log(response.data);
+            return response.data;
+        })
+        .catch((error) => {
+            console.log(error);
+            return null;
+        })
+    }
+
+    const put = async (data) => {
+        await axios.put(`${BASE_URL}${data.url}`, data.body, {headers: {Authorization: `Token ${token}`}, timeout: 36000})
+        .then((response) => {
+            return response.data;
+        })
+        .catch((error) => {
+            console.log(error);
+            return null;
+        })
     }
 
     const GetUser = () => {
-        return userID;
+        return user
     }
 
     const Logout = () => {
         setToken(null);
         setSignedIn(false);
-        setUserID(null);
+        setUser({});
     }
 
     async function Login(username, password) {
-        axios.post(`${BASE_URL}/accounts/token/`, {username, password}, {timeout: 36000})
+        await axios.post(`${BASE_URL}/accounts/token/`, {username, password}, {timeout: 36000})
         .then(
             ((response) => {
                 setToken(response.data.token);
-                setUserID(response.data.user_id);
                 setSignedIn(true);
+                setUser({
+                    id: response.data.user_id,
+                    email: response.data.email,
+                    username: response.data.username 
+                })
             }
         ))
         .catch((error) => {
@@ -53,7 +76,7 @@ export const AuthProvider = (props) => {
     }
 
     return(
-        <AuthContext.Provider value={{ signed: signedIn, Login, AuthPost, GetUser, Logout }}>
+        <AuthContext.Provider value={{ signed: signedIn, Login, post, get, put, Logout, GetUser }}>
             {props.children}
         </AuthContext.Provider>
     )

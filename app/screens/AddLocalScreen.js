@@ -23,8 +23,8 @@ function AddLocalScreen({navigation}) {
   };
 
   const addLocal = async () => {
-    const data = {name: localName, latitude: latitude, longitude: longitude, user_id: context.GetUser()}
-    const response = context.AuthPost({'url': '/locals/', 'body': data})
+    const data = {name: localName, latitude: latitude, longitude: longitude, user_id: context.GetUser().id}
+    const response = context.post({'url': '/locals/', 'body': data})
     
     Alert.alert("Sucesso!", "Local Adicionado com Sucesso!",
     [

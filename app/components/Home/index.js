@@ -34,12 +34,12 @@ function Home({navigation}) {
             </View>
 
             <View style={{marginTop: 100}}>
-                <View style={{justifyContent: 'center'}} >
-                    <TouchableOpacity onPress={() => userSettings()} style={{backgroundColor: 'orange', width: 280, borderRadius: 18, marginBottom: 20}} >
+                {/* <View style={{justifyContent: 'center'}} > */}
+                    {/* <TouchableOpacity onPress={() => userSettings()} style={{backgroundColor: 'orange', width: 280, borderRadius: 18, marginBottom: 20}} >
                         <Text style={{color: 'white', padding: 16, textAlign: 'center', fontWeight: '500', fontSize: 22}} >Editar perfil</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                 {/* <Button title="Configurações" onPress={() => userSettings()} /> */}
-                </View>
+                {/* </View> */}
 
                 <View>
                     <TouchableOpacity onPress={() => addLocal()} style={{backgroundColor: 'orange', width: 280, borderRadius: 18, marginBottom: 20}} >
