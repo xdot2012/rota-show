@@ -28,10 +28,10 @@ function Home({navigation}) {
     }
 
     
-    return (
-        <View style={{ flex: 1, alignItems: 'center', marginTop: 50, }}>
+    return ( 
+        <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#94dcf2' }}>
             <View>
-                <Text style={{fontWeight: 'bold', fontSize: 40}} >O que deseja?</Text>
+                <Text style={{fontWeight: 'bold', fontSize: 40, marginTop: 50}} >O que deseja?</Text>
             </View>
 
             <View style={{marginTop: 100}}>
@@ -57,9 +57,9 @@ function Home({navigation}) {
                 </View>
                 {/* <Button title="Gerar Rota" onPress={() => generateRoute()} /> */}
 
-                <View>
-                    <TouchableOpacity onPress={() => signOut()} style={{backgroundColor: 'orange', width: 280, borderRadius: 18}} >
-                        <Text style={{color: 'white', padding: 16, textAlign: 'center', fontWeight: '500', fontSize: 22}} >Sair</Text>
+                <View style={{marginTop: 100}} >
+                    <TouchableOpacity onPress={() => signOut()} style={{backgroundColor: '#FF5100', width: 280, borderRadius: 18}} >
+                        <Text style={{color: 'white', padding: 16, textAlign: 'center', fontWeight: 'bold', fontSize: 22}} >SAIR</Text>
                     </TouchableOpacity>
                 {/* <Button title="Logout" onPress={() => signOut()} /> */}
                 </View>
