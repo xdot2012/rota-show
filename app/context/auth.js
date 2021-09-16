@@ -12,8 +12,11 @@ export const AuthProvider = (props) => {
     const [token, setToken] = useState(null);
     const [user, setUser] = useState({});
 
+    const GetToken = () => {
+        return token
+    }
+    
     const get = async (data) => {
-        console.log(`Token ${token}`)
         await axios.get(`${BASE_URL}${data.url}`, {headers: {Authorization: `Token ${token}`}, timeout: 36000})
         .then((response) => {
             return response.data;
@@ -38,6 +41,17 @@ export const AuthProvider = (props) => {
 
     const put = async (data) => {
         await axios.put(`${BASE_URL}${data.url}`, data.body, {headers: {Authorization: `Token ${token}`}, timeout: 36000})
+        .then((response) => {
+            return response.data;
+        })
+        .catch((error) => {
+            console.log(error);
+            return null;
+        })
+    }
+
+    const del = async (data) => {
+        await axios.delete(`${BASE_URL}${data.url}`, {headers: {Authorization: `Token ${token}`}, timeout: 36000})
         .then((response) => {
             return response.data;
         })
@@ -76,7 +90,7 @@ export const AuthProvider = (props) => {
     }
 
     return(
-        <AuthContext.Provider value={{ signed: signedIn, Login, post, get, put, Logout, GetUser }}>
+        <AuthContext.Provider value={{ signed: signedIn, GetToken, Login, post, get, put, del, Logout, GetUser }}>
             {props.children}
         </AuthContext.Provider>
     )

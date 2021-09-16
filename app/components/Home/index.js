@@ -3,17 +3,23 @@ import { Text, View, Button, StyleSheet } from 'react-native'
 import AuthContext from '../../context/auth';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useDispatch, connect } from 'react-redux';
+import { LoadLocals } from './actions';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { ReactReduxContext } from 'react-redux'
 import * as SecureStore from 'expo-secure-store';
 
+
 function Home({navigation}) {
     const context = useContext(AuthContext);
+    const dispatch = useDispatch();
+
+    useEffect(()=> {
+        dispatch(LoadLocals(context.GetToken()));
+    },[])
 
     const userSettings = () => {
-        navigation.navigate('Settings')
+        navigation.navigate('Settings');
     }
-
     const addLocal = () => {
         navigation.navigate('AddLocal')
     }
@@ -34,12 +40,11 @@ function Home({navigation}) {
             </View>
 
             <View style={{marginTop: 100}}>
-                {/* <View style={{justifyContent: 'center'}} > */}
-                    {/* <TouchableOpacity onPress={() => userSettings()} style={{backgroundColor: 'orange', width: 280, borderRadius: 18, marginBottom: 20}} >
+                <View style={{justifyContent: 'center'}} >
+                    <TouchableOpacity onPress={() => userSettings()} style={{backgroundColor: 'orange', width: 280, borderRadius: 18, marginBottom: 20}} >
                         <Text style={{color: 'white', padding: 16, textAlign: 'center', fontWeight: '500', fontSize: 22}} >Editar perfil</Text>
-                    </TouchableOpacity> */}
-                {/* <Button title="Configurações" onPress={() => userSettings()} /> */}
-                {/* </View> */}
+                    </TouchableOpacity>
+                </View>
 
                 <View>
                     <TouchableOpacity onPress={() => addLocal()} style={{backgroundColor: 'orange', width: 280, borderRadius: 18, marginBottom: 20}} >

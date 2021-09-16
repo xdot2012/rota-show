@@ -1,19 +1,26 @@
 import {
-    LOAD_PAGES,
+    LOAD_LOCALS,
+    ROUTE_GENERATED,
+    ACCOUNT_CREATED,
 } from './actions';
 
 const INITIAL_STATE = {
-    pages: []
+    locals: [],
+    route: []
 };
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case LOAD_PAGES:
+        case LOAD_LOCALS:
             return {
                 ...state,
-                pages: action.payload
+                locals: action.payload
             };
-
+        case ROUTE_GENERATED:
+            return {
+                ...state,
+                route: action.payload
+            }
         default:
             return state;
     }

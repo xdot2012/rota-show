@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Button, TouchableOpacity, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-
+import { useSelector } from 'react-redux';
 
 function ShowRouteScreen({navigation}) {
+  const userRoute = useSelector((state) => state.Home.route)
+
+
     return (
       <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#94dcf2' }}>
         <View style={{marginTop: 50, backgroundColor: 'white', width: 300, borderRadius: 8, marginBottom: 20}} >

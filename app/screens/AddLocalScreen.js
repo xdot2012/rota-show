@@ -24,20 +24,10 @@ function AddLocalScreen({navigation}) {
 
   const addLocal = async () => {
     const data = {name: localName, latitude: latitude, longitude: longitude, user_id: context.GetUser().id}
-    const response = context.post({'url': '/locals/', 'body': data})
-    
-    Alert.alert("Sucesso!", "Local Adicionado com Sucesso!",
-    [
-      {
-        text: "Adicionar Novo Local",
-        onPress: () => clearState()
-      },
-      {
-        text: "Voltar",
-        onPress: () => goBack(),
-      },
-    ] )
+    const response = context.post({'url': '/locals/', 'body': data})  
   }
+
+  
     return (
       <View  style={{ flex: 1, alignItems: 'center', backgroundColor: '#94dcf2'}}>
 

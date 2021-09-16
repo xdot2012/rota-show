@@ -1,5 +1,6 @@
 from django.db import IntegrityError
 from rest_framework import viewsets, status
+from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from .serializers import LocalSerializer
 from .models import Local
@@ -10,7 +11,6 @@ class LocalViewSet(viewsets.ModelViewSet):
     queryset = Local.objects.all()
     serializer_class = LocalSerializer
     permission_classes = [IsAuthenticated]
-
 
     def create(self, request, *args, **kwargs):
         print(request.data)
@@ -36,3 +36,17 @@ class LocalViewSet(viewsets.ModelViewSet):
 
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
+class GenerateRouteAPI(APIView):
+    def post(self, request):
+        print("LÓGICA AQUI")
+        initial_point_pk = request.data['initial_point_pk']
+
+        response = {
+            'route': [
+
+            ]
+        }
+        return Response(response, status=status.HTTP_200_OK)
+        

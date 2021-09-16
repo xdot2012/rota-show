@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { StyleSheet, Text, View, Button, TouchableOpacity, TextInput } from 'react-native'
+import { StyleSheet, Text, View, Button, TouchableOpacity, TextInput, Alert } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import AuthContext from '../context/auth';
 
@@ -14,9 +14,27 @@ function SettingsScreen({navigation}) {
     setEmail(context.GetUser().email);
   }, [])
 
+  
+  const deletarConta = () => {
+    Alert.alert("Atençaõ!", "Tem certeza que deseja deletar a sua conta?",
+    [
+      {
+        text: "Confirmar",
+        onPress: () => {
+          context.del({'url': `/accounts/users/${context.GetUser().id}/`});
+          context.Logout();
+        }
+      },
+      {
+        text: "Cancelar",
+        onPress: () => navigation.navigate("Settings"),
+      },
+    ] )
+  }
+
   const atualizarPerfil = () => {
     const data = { username: nome, email: email }
-    context.put({'url': `/accounts/users/${context.GetUser().id}/`, data})
+    context.put({'url': `/accounts/users/${context.GetUser().id}/`, 'body': data})
     context.Logout();
   }
 
@@ -56,6 +74,11 @@ function SettingsScreen({navigation}) {
           <TouchableOpacity onPress={() => atualizarPerfil()} 
           style={{backgroundColor: 'white', width: 300, borderRadius: 8, marginTop: 100, backgroundColor: '#f2e194' }} >
             <Text style={{textAlign: 'center', padding: 20, fontWeight: '500', fontSize: 22, color: 'black'}} >ATUALIZAR PERFIL</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => deletarConta()} 
+          style={{backgroundColor: 'white', width: 300, borderRadius: 8, marginTop: 100, backgroundColor: '#f2e194' }} >
+            <Text style={{textAlign: 'center', padding: 20, fontWeight: '500', fontSize: 22, color: 'black'}} >DELETAR CONTA</Text>
           </TouchableOpacity>
         </View>
 

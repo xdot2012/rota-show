@@ -36,9 +36,11 @@ function App() {
 
   return (
     <AuthProvider>
+      <Provider store={store}>
       <NavigationContainer>
         <Navigator />
       </NavigationContainer>
+      </Provider>
     </AuthProvider>
   );
 }
