@@ -43,7 +43,7 @@ export const GenerateRoute = (token, data) => {
     return (dispatch) => {
         axios.post(`${BASE_URL}/routes/generate/`, data, {headers: {Authorization: `Token ${token}`}}, {timeout: 36000})
             .then((response => {
-                dispatch(hasSuccess(response));
+                dispatch(hasSuccessRoute(response));
         }))
             .catch((error => {
                 console.log(error);
@@ -56,7 +56,7 @@ export const CreateAccount = (data) => {
     return (dispatch) => {
         axios.post(`${BASE_URL}/accounts/users/`, data, {timeout: 36000})
             .then((response => {
-                dispatch(hasSuccess(response));
+                dispatch(accountCreated(response));
         }))
             .catch((error => {
                 console.log(error);
