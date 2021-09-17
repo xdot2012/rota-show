@@ -1,19 +1,58 @@
 from django.db import IntegrityError
 from rest_framework import viewsets, status
 from rest_framework.views import APIView
-from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from .serializers import LocalSerializer
 from .models import Local
 from accounts.models import User
 from rest_framework.response import Response
+
 
 class LocalViewSet(viewsets.ModelViewSet):
     queryset = Local.objects.all()
     serializer_class = LocalSerializer
     permission_classes = [IsAuthenticated]
 
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+
+        if instance.user != request.user:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+
+        if instance.user != request.user:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            instance._prefetched_objects_cache = {}
+
+        return Response(serializer.data)
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if instance.user != request.user:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        queryset = queryset.filter(user=request.user)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
     def create(self, request, *args, **kwargs):
-        print(request.data)
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
