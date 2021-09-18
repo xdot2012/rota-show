@@ -6,3 +6,4 @@ venv/
 .expo-shared/
 node_modules/
 meu_app
+__pycache__

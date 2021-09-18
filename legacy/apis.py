@@ -53,7 +53,6 @@ class LocalViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     def list(self, request, *args, **kwargs):
-        print(request.user)
         queryset = self.filter_queryset(self.get_queryset())
         queryset = queryset.filter(user=request.user)
         serializer = self.get_serializer(queryset, many=True)
@@ -64,7 +63,7 @@ class LocalViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
 
         try:
-            user = User.objects.get(pk=request.data['user_id'])
+            user = request.user
         except:
             return Response({'error': 'Usuário não existe'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
