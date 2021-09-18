@@ -53,6 +53,7 @@ class LocalViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     def list(self, request, *args, **kwargs):
+        print(request.user)
         queryset = self.filter_queryset(self.get_queryset())
         queryset = queryset.filter(user=request.user)
         serializer = self.get_serializer(queryset, many=True)

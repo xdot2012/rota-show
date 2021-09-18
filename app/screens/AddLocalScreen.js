@@ -4,14 +4,16 @@ import AuthContext from '../context/auth';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import { LinearGradient } from 'expo';
+import { useDispatch } from 'react-redux';
 
 function AddLocalScreen({navigation}) {
   const [localName, setLocalName] = useState('');
   const [latitude, setLatitude] = useState('');
   const [longitude, setLogitude] = useState('');
-
+  const dispatch = useDispatch()
   const context = useContext(AuthContext);
 
+  
   const clearState = () => {
     setLocalName('');
     setLatitude('');
@@ -25,6 +27,18 @@ function AddLocalScreen({navigation}) {
   const addLocal = async () => {
     const data = {name: localName, latitude: latitude, longitude: longitude, user_id: context.GetUser().id}
     const response = context.post({'url': '/locals/', 'body': data})  
+    dispatch(LoadLocals(context.GetToken()));
+
+    Alert.alert("SUCESSO", `${localName} adicionado com sucesso!`, [
+      { 
+        text: "Retornar",
+        onPress: () => goBack(),
+      },
+      { 
+        text: "OK",
+        onPress: () => clearState(),
+      }
+    ])
   }
 
   

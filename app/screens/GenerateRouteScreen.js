@@ -78,10 +78,12 @@ function GenerateRouteScreen({navigation}) {
           />
         )}
 
-        <Text style={{ fontSize: 15, fontWeight: '500' ,alignSelf: 'flex-start', marginTop: 50, marginBottom: -40, marginLeft: 50}} >INICIANDO ROTA EM:</Text>
-        <View>
-          <Text>{pointName}</Text>
-        </View>
+        <Text style={{ fontSize: 15, fontWeight: '500' ,alignSelf: 'flex-start', marginTop: 50, marginBottom: -40, marginLeft: 50}} >INICIANDO ROTA EM:
+          <View>
+            <Text>{pointName}</Text>
+          </View>
+        </Text>
+
 
         <View>
           <TouchableOpacity onPress={() => gerarRota()} 

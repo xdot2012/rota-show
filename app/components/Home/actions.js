@@ -14,7 +14,7 @@ export const accountCreated = (payload) => {
 export const hasSuccess = (payload) => {
     return {
         type: LOAD_LOCALS,
-        payload: payload.data.results
+        payload: payload.data
     };
 };
 

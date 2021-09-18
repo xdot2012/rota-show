@@ -7,7 +7,7 @@ class Local(models.Model):
     longitude = models.DecimalField(max_digits=22, decimal_places=16, blank=True, null=True)
 
     def __str__(self):
-        return self.email
+        return self.name
 
     class Meta:
         unique_together = [['user', 'latitude', 'longitude']]
