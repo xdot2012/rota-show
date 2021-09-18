@@ -87,16 +87,14 @@ class GenerateRouteAPI(APIView):
     def post(self, request):
 
         api_key = '&key=AIzaSyD3iW-BDcjxvxPpQIr-YxZLu7TrcJ7I5hc'
-
-        #initial_point_pk = 16
         Initial_obj = []
         obj_list = []
+
+        #initial_point_pk = 2
         initial_point_pk = request.data['initial_point_pk']
+
         user_pk = request.user.pk
-        try:
-            local_list = Local.objects.filter(user=user_pk)
-        except:
-            raise ("FUDEU")
+        local_list = Local.objects.filter(user=user_pk)
         local_url = ""
         distance_matrix = []
 
@@ -190,15 +188,25 @@ class GenerateRouteAPI(APIView):
 
         if solution:
             res = print_solution(manager, routing, solution)
-            route = str(Initial_obj[0].pk)
+            Initial_obj.extend(obj_list)
+            route = []
+            last = 0
             for x in res[0]:
-                if x != 0:
-                    route = route + str(obj_list[int(x)-1])
+                place = {
+                    "name": Initial_obj[int(x)].name,
+                    "pk": Initial_obj[int(x)].pk,
+                    "distance": float(distance_matrix[int(last)][int(x)]),
+                }
+                route.append(place)
+                last = x
 
             response = {
-                'route': str(route),
-                'distance': str(int(int(res[1][0])*1.60934)),
+                "initial_pont": {"name": Initial_obj[0].name,"pk": Initial_obj[0].pk},
+                "route": route,
+                "distance": float(res[1][0]),
             }
+
+
             return Response(response, status=status.HTTP_200_OK)
 
         return Response(data="Resultado Não encontrado", status=status.HTTP_424_FAILED_DEPENDENCY)
