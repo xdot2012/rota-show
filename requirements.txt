@@ -1,7 +1,9 @@
 amqp==2.5.2
 asgiref==3.2.5
+ortools==9.0.9048
 Babel==2.8.0
 billiard==3.6.3.0
+requests==2.26.0
 celery==4.4.1
 Django==3.0.7
 django-celery-beat==2.0.0

@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSelector, useDispatch } from 'react-redux';
 import AuthContext from '../context/auth';
 import { GenerateRoute } from '../components/Home/actions';
+import { ScrollView } from 'react-native-gesture-handler';
 
 function GenerateRouteScreen({navigation}) {
   const [idPontoInicial, setIdPontoInicial] = useState('');
@@ -78,11 +79,13 @@ function GenerateRouteScreen({navigation}) {
           />
         )}
 
-        <Text style={{ fontSize: 15, fontWeight: '500' ,alignSelf: 'flex-start', marginTop: 50, marginBottom: -40, marginLeft: 50}} >INICIANDO ROTA EM:
-          <View>
-            <Text>{pointName}</Text>
-          </View>
-        </Text>
+        <View style={{flexDirection: 'row'}} >
+          <Text style={{ fontSize: 15, fontWeight: '500' ,alignSelf: 'flex-start', marginTop: 50, marginBottom: -40, marginLeft: 50}} >INICIANDO ROTA EM:
+            <View>
+              <Text style={{fontWeight: '500', fontSize: 16, marginLeft: 15}} >{pointName}</Text>
+            </View>
+          </Text>
+        </View>
 
 
         <View>
@@ -91,7 +94,6 @@ function GenerateRouteScreen({navigation}) {
             <Text style={{textAlign: 'center', padding: 20, fontWeight: '500', fontSize: 22, color: 'black'}} >GERAR ROTA</Text>
           </TouchableOpacity>
         </View>
-
       </View>
     );
   }
