@@ -27,7 +27,7 @@ function SignInScreen({ navigation }) {
       </View>
 
       <TextInput
-        placeholder="E-mail"
+        placeholder="User Name"
         value={username}
         onChangeText={setUsername}
         textAlign='center'

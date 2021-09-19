@@ -3,8 +3,6 @@ import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-nativ
 import { useDispatch } from 'react-redux';
 import { CreateAccount } from '../components/Home/actions';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { Button } from 'react-native-elements';
-
 
 
 function CreateAccountScreen({ navigation }) {
@@ -33,11 +31,18 @@ function CreateAccountScreen({ navigation }) {
       </View>
 
       <TextInput
-        placeholder="E-mail"
+        placeholder="User Name"
         value={username}
         onChangeText={setUsername}
         textAlign='center'
         style={{ marginTop: 50, marginBottom: 20, borderRadius: 8, width: 300, height: 40, borderWidth: 1, borderColor: "#C1C1C1", backgroundColor: 'white' }}
+      />
+      <TextInput
+        placeholder="E-mail"
+        value={email}
+        onChangeText={setEmail}
+        textAlign='center'
+        style={{ marginBottom: 20, borderRadius: 8, width: 300, height: 40, borderWidth: 1, borderColor: "#C1C1C1", backgroundColor: 'white' }}
       />
       <TextInput
         placeholder="Password"
@@ -49,7 +54,7 @@ function CreateAccountScreen({ navigation }) {
       />
 
       <View>
-        <TouchableOpacity onPress={() => login(username, password)}
+        <TouchableOpacity onPress={() => addUser({ username, email, password })}
           style={{ backgroundColor: 'white', width: 300, borderRadius: 8, marginTop: 100, backgroundColor: '#f2e194' }} >
           <Text style={{ textAlign: 'center', padding: 20, fontWeight: '500', fontSize: 22, color: 'black' }} >CRIAR CONTA</Text>
         </TouchableOpacity>
@@ -59,27 +64,7 @@ function CreateAccountScreen({ navigation }) {
 
 
     </View>
-    // <View>
-    //   <TextInput
-    //     placeholder="Username"
-    //     value={username}
-    //     onChangeText={setUsername}
-    //   />
-    //   <TextInput
-    //     placeholder="Email"
-    //     value={email}
-    //     onChangeText={setEmail}
-    //   />
-    //   <TextInput
-    //     placeholder="Password"
-    //     value={password}
-    //     onChangeText={setPassword}
-    //     secureTextEntry
-    //   />
-    //   <Button title="CreateAccount" onPress={() => addUser({ username, email, password })} />
-    // </View>
   );
-
 
 }
 
@@ -87,7 +72,6 @@ const styles = StyleSheet.create({
   button: {
     margin: 20
   }
-
 });
 
 
