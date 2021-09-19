@@ -200,6 +200,9 @@ class GenerateRouteAPI(APIView):
                 route.append(place)
                 last = x
 
+            if len(route) > 1:
+                route = route[1:]
+                
             response = {
                 "initial_pont": {"name": Initial_obj[0].name,"pk": Initial_obj[0].pk},
                 "route": route,
