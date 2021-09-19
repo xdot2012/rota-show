@@ -195,7 +195,7 @@ class GenerateRouteAPI(APIView):
                 place = {
                     "name": Initial_obj[int(x)].name,
                     "pk": Initial_obj[int(x)].pk,
-                    "distance": float(distance_matrix[int(last)][int(x)] / 1000),
+                    "distance": float(distance_matrix[int(last)][int(x)])/1000,
                 }
                 route.append(place)
                 last = x
@@ -206,7 +206,7 @@ class GenerateRouteAPI(APIView):
             response = {
                 "initial_pont": {"name": Initial_obj[0].name,"pk": Initial_obj[0].pk},
                 "route": route,
-                "distance": float(res[1][0] / 1000),
+                "distance": float(res[1][0])/1000,
             }
 
 
