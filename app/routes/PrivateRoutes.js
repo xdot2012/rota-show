@@ -12,7 +12,7 @@ import SignOutScreen from '../screens/SignOutScreen';
 const PrivateRoutes = () => {
     return (
         <Stack.Navigator initialRouteName={'Home'}>
-            <Stack.Screen name="Home" component={MainScreen}/>
+            <Stack.Screen name="Home" component={MainScreen} />
             <Stack.Screen name="AddLocal" component={AddLocalScreen} />
             <Stack.Screen name="Settings" component={SettingsScreen} />
             <Stack.Screen name="GenerateRoute" component={GenerateRouteScreen} />
