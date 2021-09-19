@@ -9,7 +9,6 @@ function SignInScreen({navigation}) {
     const context = useContext(AuthContext);
 
     const login = (username, password) => {
-      console.log('LOGA')
       context.Login(username, password);
     }
 

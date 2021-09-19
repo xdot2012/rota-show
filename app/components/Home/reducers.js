@@ -19,7 +19,7 @@ export default (state = INITIAL_STATE, action) => {
         case ROUTE_GENERATED:
             return {
                 ...state,
-                route: action.payload
+                route: action.payload.route
             }
         default:
             return state;

@@ -21,7 +21,7 @@ export const hasSuccess = (payload) => {
 export const hasSuccessRoute = (payload) => {
     return {
         type: ROUTE_GENERATED,
-        paylod: payload.data.route
+        payload: payload.data
     }
 }
 

@@ -13,12 +13,6 @@ function GenerateRouteScreen({navigation}) {
   const context = useContext(AuthContext);
   const dispatch = useDispatch(); 
   
-
-    const teste = () => {
-      
-      console.log(idPontoInicial)
-    }
-
     const gerarRota = () => {
         dispatch(GenerateRoute(context.GetToken(), { initial_point_pk: idPontoInicial }));
         navigation.navigate("ShowRouteScreen")
@@ -69,7 +63,7 @@ function GenerateRouteScreen({navigation}) {
               <>
                 
                   <View>
-                    <TouchableOpacity onPress={() => {teste(); setIdPontoInicial(item.pk); setPointName(item.name)}} style={{width: 300, backgroundColor: '#c999c2', marginTop: 10, borderRadius: 8}} >
+                    <TouchableOpacity onPress={() => {setIdPontoInicial(item.pk); setPointName(item.name)}} style={{width: 300, backgroundColor: '#c999c2', marginTop: 10, borderRadius: 8}} >
                       <Text style={{padding: 10, textAlign: 'center', color: 'black', fontSize: 15, fontWeight: '500'}} >{item.name}</Text>
                     </TouchableOpacity>
                   </View>
