@@ -108,20 +108,18 @@ No terminal do Pycharm, digite:
 
 ### Frontend
 - Instalar Node.js 16.9.1. <br />
-    No terminal do Linux, digite: <br />
-    ```
-    sudo apt-get install nodejs npm
-    ```
-
+Faça o download em:
+   https://nodejs.org/en/
+   
 - Instalar yarn. <br />
     No terminal do Linux, digite: <br />
     ```
-    npm install --global yarn
+    sudo npm install --global yarn
     ```
 - Instalar Expo. <br />
     No terminal do Linux, digite: <br />
     ```
-    yarn global add expo-cli
+    sudo yarn global add expo-cli
     ```
 
 - Instalar Dependências do Projeto. <br />
