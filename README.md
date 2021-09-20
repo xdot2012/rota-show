@@ -107,15 +107,26 @@ No terminal do Pycharm, digite:
 
 
 ### Frontend
+- Instalar Curl <br />
+    No terminal do Linux, digite: <br />
+    ```
+    sudo apt-get install curl
+    ```
 - Instalar Node.js 16.9.1. <br />
-Faça o download em:
-   https://nodejs.org/en/
+    No terminal do Linux, digite: <br />
+    ```
+    cd ~
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+    source ~/.bashrc
+    nvm install v16.9.1
+    ```
    
 - Instalar yarn. <br />
     No terminal do Linux, digite: <br />
     ```
     sudo npm install --global yarn
     ```
+    
 - Instalar Expo. <br />
     No terminal do Linux, digite: <br />
     ```
@@ -129,6 +140,7 @@ Faça o download em:
     yarn install
     ```
 
+    
 - Configurar Variáveis. <br />
     Precisamos informar ao aplicativo o nosso número de ip para que possamos acessar o servidor de backend no ambiente de desenvolvimento. Para isso, descubra seu endereço de ip utilizando o comando ifconfig ou através de outros meios que preferir, e o digite dentro do arquivo variables.js, da seguinte forma: <br />
     <img src="./img/ip.png"> <br />
@@ -136,9 +148,22 @@ Faça o download em:
 - Rodar o Projeto. <br />
     No terminal do Linux, dentro da pasta app digite: <br />
     ```
-    expo start
+    yarn start
     ```
-## 2. Documentação APIS
+    Uma página será aberta no navegador. <br />
+    Na parte esquerda, acima do código QR, clique em LAN e aguarde a iniciação.
+
+- No seu smartphone, instale o aplicativo Expo, disponível para Android e IOS. <br />
+    https://apps.apple.com/br/app/expo-go/id982107779 <br />
+    https://play.google.com/store/apps/details?id=host.exp.exponent&hl=pt_BR&gl=US <br />
+    
+
+- Abra o aplicativo, selecione a opção SCAN QR CODE e leia o código disponibilizado no navegador. <br />
+    Aguarde a instalação, o aplicativo será aberto no modo de desenvolvimento.
+    
+- Divirta-se!
+
+## 2. Documentação APIs
 Aqui listamos as APIS disponíveis. Para mais informações e exemplos, importe o arquivo do insomnia disponível na raiz do projeto. <br />
 
 - Public Routes
