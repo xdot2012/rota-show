@@ -8,6 +8,12 @@
     - Henrique de Lima Barroso <br />
 
 - Sobre
+    - Tecnologias: <br />
+        Para o desenvolvimento do projeto, utilizamos as seguintes tecnologias:
+        - Python/Django/Django Rest Framework no Backend.
+        - Sqlite3 como banco de dados.
+        - Javascript/React Native/Redux, utilizando o expo-cli no Frontend (aplicativo).
+        
     - Estrutura de Pastas do projeto
         - accounts: <br />
             <i>Contêm as definições e lógicas do sistema de autenticação e registro de usuários.</i>
