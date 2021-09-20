@@ -92,6 +92,13 @@ No terminal do Pycharm, digite:
     ```
     python manage.py migrate
     ```
+    
+- Criar Super Usuário. <br />
+No terminal do Pycharm, digite:
+    ```
+    python manage.py createsuperuser
+    ```
+    
 - Executar o Servidor. <br />
 No terminal do Pycharm, digite:
     ```
@@ -103,7 +110,7 @@ No terminal do Pycharm, digite:
 - Instalar Node.js 16.9.1. <br />
     No terminal do Linux, digite: <br />
     ```
-    sudo apt-get install nodejs
+    sudo apt-get install nodejs npm
     ```
 
 - Instalar yarn. <br />
