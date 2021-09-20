@@ -37,6 +37,8 @@
             <i>Contêm as definições e lógicas do sistema de geração de rotas.</i>
         - meuapp:<br />
             <i>Contêm os arquivos de configuração e raiz do Sistema.</i>
+        - dbsqlite:<br />
+            <i>Banco de dados Sqlite.</i>
         - templates:<br />
             <i>Arquivos de template html.</i>
         - insomnia_export.json:<br />
@@ -159,8 +161,12 @@ No terminal do Pycharm, digite:
     
 
 - Abra o aplicativo, selecione a opção SCAN QR CODE e leia o código disponibilizado no navegador. <br />
-    Aguarde a instalação, o aplicativo será aberto no modo de desenvolvimento.
+  <img src="./img/expo.jpeg"> <br />
+  Aguarde a instalação, o aplicativo será aberto no modo de desenvolvimento. <br />
     
+- Disponibilizamos também um usuário administrador com registros criados previamente para facilitar os testes, você pode efetuar o login em tal usuário utilizando as seguintes credenciais:
+<br /><b>Login:</b> admin
+<br /><b>Senha:</b> admin
 - Divirta-se!
 
 ## 2. Documentação APIs

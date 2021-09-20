@@ -26,7 +26,7 @@ function ShowRouteScreen({navigation}) {
             <>
               <View style={{}} >
                   <Icon name="chevron-down" size={36} style={{alignSelf: 'center'}} />
-                  <Text style={{padding: 10, textAlign: 'center', color: 'black', fontSize: 18, fontWeight: '500'}} >{item.name} - {item.distance / 1000} KM</Text>          
+                  <Text style={{padding: 10, textAlign: 'center', color: 'black', fontSize: 18, fontWeight: '500'}} >{item.name} - {item.distance} KM</Text>          
                   
               </View>
             </>

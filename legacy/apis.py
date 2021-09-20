@@ -12,6 +12,7 @@ from rest_framework.response import Response
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
 
+api_key = '&key=AIzaSyD3iW-BDcjxvxPpQIr-YxZLu7TrcJ7I5hc'
 
 
 class LocalViewSet(viewsets.ModelViewSet):
@@ -85,13 +86,9 @@ class LocalViewSet(viewsets.ModelViewSet):
 
 class GenerateRouteAPI(APIView):
     def post(self, request):
-
-        api_key = '&key=AIzaSyD3iW-BDcjxvxPpQIr-YxZLu7TrcJ7I5hc'
+        initial_point_pk = request.data['initial_point_pk']
         Initial_obj = []
         obj_list = []
-
-        #initial_point_pk = 2
-        initial_point_pk = request.data['initial_point_pk']
 
         user_pk = request.user.pk
         local_list = Local.objects.filter(user=user_pk)
@@ -101,8 +98,10 @@ class GenerateRouteAPI(APIView):
         for x in local_list:
             if x.pk == initial_point_pk:
                 local_url = str(x.latitude) + ',' + str(x.longitude)
+
         if local_url == "":
             return Response(data="ponto inicial não cadastrado", status=status.HTTP_400_BAD_REQUEST)
+
         for x in local_list:
             if x.pk != initial_point_pk:
                 local_url = local_url + "|" + str(x.latitude) + ',' + str(x.longitude)
@@ -113,8 +112,6 @@ class GenerateRouteAPI(APIView):
         url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins="
         url = url + local_url + "&destinations=" + local_url + api_key
 
-        #url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=40.6655101,-73.89188969999998|40.659569,-73.933783&destinations=40.6655101,-73.89188969999998|40.659569,-73.933783&key=AIzaSyD3iW-BDcjxvxPpQIr-YxZLu7TrcJ7I5hc"
-
         payload = {}
         headers = {}
 
@@ -122,7 +119,6 @@ class GenerateRouteAPI(APIView):
         json.loads(api_response.text)
 
         local_len = len(local_list)
-        #local_len = 2
 
         for x in range(local_len):
             local_distance = []
@@ -195,7 +191,7 @@ class GenerateRouteAPI(APIView):
                 place = {
                     "name": Initial_obj[int(x)].name,
                     "pk": Initial_obj[int(x)].pk,
-                    "distance": float(distance_matrix[int(last)][int(x)])/1000,
+                    "distance": int(float(distance_matrix[int(last)][int(x)])/1000),
                 }
                 route.append(place)
                 last = x
@@ -206,7 +202,7 @@ class GenerateRouteAPI(APIView):
             response = {
                 "initial_pont": {"name": Initial_obj[0].name,"pk": Initial_obj[0].pk},
                 "route": route,
-                "distance": float(res[1][0])/1000,
+                "distance": int(float(res[1][0])/1000),
             }
 
 

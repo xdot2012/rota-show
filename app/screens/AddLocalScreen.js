@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import { StyleSheet, Text, View, Button, TouchableOpacity, TextInput, Alert} from 'react-native'
 import AuthContext from '../context/auth';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { LoadLocals } from '../components/Home/actions';
 
 import { LinearGradient } from 'expo';
 import { useDispatch } from 'react-redux';
@@ -22,23 +23,22 @@ function AddLocalScreen({navigation}) {
 
   const goBack = () => {
     navigation.navigate('Home')
-  };
+  }
 
-  const addLocal = async () => {
+  const addLocal = () => {
     const data = {name: localName, latitude: latitude, longitude: longitude, user_id: context.GetUser().id}
     const response = context.post({'url': '/locals/', 'body': data})  
     dispatch(LoadLocals(context.GetToken()));
-
-    Alert.alert("SUCESSO", `${localName} adicionado com sucesso!`, [
-      { 
-        text: "Retornar",
+    Alert.alert("SUCESSO!", "Ponto Adicionado com sucesso, deseja adicionar outro ponto?",[
+      {
+        text: "Sim",
+        onPress: () => clearState(),
+      },
+      {
+        text: "Sair",
         onPress: () => goBack(),
       },
-      { 
-        text: "OK",
-        onPress: () => clearState(),
-      }
-    ])
+    ] )
   }
 
   
@@ -51,6 +51,7 @@ function AddLocalScreen({navigation}) {
             <Icon name="bus" size={38} style={{padding: 10}} />
           </View>
         </View>
+
 
         <TextInput
           placeholder="Nome do Local"
@@ -73,7 +74,9 @@ function AddLocalScreen({navigation}) {
           textAlign='center'
           style={{marginBottom: 20, borderRadius: 8, width: 300, height: 40, borderWidth: 1, borderColor: "#C1C1C1", backgroundColor: 'white'}}
         />
-
+        <View style={{ marginLeft: 20, marginRight: 20}}>
+            <Text>Certifique-se de informar a latitude e longitude corretamente, pois ainda não disponibilizamos uma forma de verificação de dados! A adicão de dados incorretos ocasionará em falhas no momento da geração da rota!</Text>
+        </View>
         <View>
           <TouchableOpacity onPress={() => addLocal()} 
           style={{backgroundColor: 'white', width: 300, borderRadius: 8, marginTop: 100, backgroundColor: '#f2e194' }} >
