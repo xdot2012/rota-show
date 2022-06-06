@@ -12,7 +12,7 @@ from rest_framework.response import Response
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
 
-api_key = '&key=AIzaSyD3iW-BDcjxvxPpQIr-YxZLu7TrcJ7I5hc'
+api_key = ''
 
 
 class LocalViewSet(viewsets.ModelViewSet):
