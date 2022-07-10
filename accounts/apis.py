@@ -1,4 +1,5 @@
 from django.contrib.auth.hashers import make_password
+from django.http import Http404, HttpResponse, HttpResponseForbidden
 from rest_framework import viewsets, status
 from accounts.models import User
 from accounts.serializers import UserSerializer
@@ -17,6 +18,8 @@ class AuthToken(ObtainAuthToken):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
+        
+        #if request.is_secure():
 
         return Response({
             'token': token.key,
@@ -24,6 +27,7 @@ class AuthToken(ObtainAuthToken):
             'email': user.email,
             'username': user.username
         })
+    #return(HttpResponseForbidden)
 
 
 class IsPostOrIsAuthenticated(permissions.BasePermission):

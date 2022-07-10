@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework_datatables',
     'rest_framework.authtoken',
     'simple_history',
+    'django_extensions',
     'accounts',
     'legacy',
 
