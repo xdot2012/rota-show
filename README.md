@@ -7,6 +7,8 @@
     - Pedro Henrique Figueiredo Salim<br />
     - Henrique de Lima Barroso <br />
 
+- <a target="_blank" href="https://drive.google.com/file/d/1OHdNeqk6c7NkC__MOs9MAVODVDFLTVzz/view?usp=sharing">Video Apresentação</a>
+
 - Sobre
     - Tecnologias: <br />
         Para o desenvolvimento do projeto, utilizamos as seguintes tecnologias:
